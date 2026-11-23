@@ -1,1 +1,20 @@
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#071426;color:#f3f8ff;font-family:Arial,sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#58d6ff 1px,transparent 1px);background-size:42px 42px}header,main{position:relative;z-index:1}header{padding:28px 6%;border-bottom:1px solid #173657;background:#071426e8}header b{display:block;color:#58d6ff;font-size:clamp(26px,6vw,40px)}header span{color:#9fb2c8}main{max-width:1100px;margin:auto;padding:35px 6%}h1{font-size:clamp(25px,5vw,35px)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px}.grid button{min-height:140px;border:1px solid #21466b;border-radius:18px;background:#10243de8;color:#fff;font-size:38px;cursor:pointer}.grid small{display:block;font-size:18px;font-weight:700;margin-top:10px}.three{grid-template-columns:repeat(3,1fr)}.hidden{display:none}.back{background:transparent;color:#9fb2c8;border:1px solid #315878;padding:10px 15px;border-radius:10px}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}.tools input,.tools select{flex:1;min-width:180px;padding:13px;border-radius:10px;border:1px solid #315878;background:#10243d;color:#fff}.tools button{padding:13px 18px;border:0;border-radius:10px;background:#58d6ff;color:#071426;font-weight:bold}.card{display:flex;justify-content:space-between;align-items:center;background:#10243d;border:1px solid #21466b;border-radius:15px;padding:16px;margin:10px 0}.muted{color:#9fb2c8}.rating{font-size:27px;color:#58d6ff;font-weight:bold}@media(max-width:650px){main{padding:25px 5%}.three{grid-template-columns:1fr}.tools{display:grid}.tools input,.tools select{width:100%}.card{gap:15px}}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#071426;--panel:#0d213b;--cyan:#35d8ff;--text:#eef8ff;--muted:#9bb2c9;--border:#1e4770}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#102b4b 0,#071426 45%,#040b15 100%);color:var(--text);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:70px 70px}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(5,15,28,.9);border-bottom:1px solid var(--border);padding:14px 20px}
+.logo-btn{border:0;background:none;color:var(--cyan);font-size:18px;font-weight:800;cursor:pointer}
+main{max-width:1100px;margin:auto;padding:30px 20px 60px}.screen{display:none}.screen.active{display:block}
+.hero{text-align:center;padding:35px 10px 28px}.hero h1{font-size:38px;margin-bottom:10px}.hero p,.section-head p{color:var(--muted)}
+.app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.app-card,.sub-card{border:1px solid var(--border);background:linear-gradient(145deg,rgba(13,33,59,.96),rgba(8,24,43,.96));color:var(--text);border-radius:18px;padding:25px;min-height:150px;text-align:left;cursor:pointer;transition:.18s;display:flex;flex-direction:column;gap:9px}
+.app-card:hover,.sub-card:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 0 25px rgba(53,216,255,.12)}
+.app-card .icon{font-size:38px}.app-card span:not(.icon){font-size:21px;font-weight:800}.app-card small,.sub-card small{color:var(--muted)}
+.section-head{display:flex;align-items:flex-start;gap:20px;margin-bottom:25px}.section-head h2{font-size:30px;margin-bottom:5px}
+.back{background:transparent;border:1px solid var(--border);color:var(--text);padding:10px 15px;border-radius:10px;cursor:pointer}
+.sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.sub-card{min-height:110px;font-size:19px}
+.content-box,.placeholder{margin-top:20px;background:rgba(13,33,59,.78);border:1px solid var(--border);border-radius:18px;padding:28px}
+.content-box h3,.placeholder h3{margin-bottom:8px}.content-box p,.placeholder p{color:var(--muted)}
+.placeholder{text-align:center;padding:60px 25px}.big-icon{font-size:60px;margin-bottom:15px}
+.primary{margin-top:20px;background:var(--cyan);border:0;color:#04101c;font-weight:800;padding:12px 20px;border-radius:10px;cursor:pointer}
+@media(max-width:760px){.app-grid,.sub-grid{grid-template-columns:1fr}.hero h1{font-size:30px}.section-head{flex-direction:column}.back{align-self:flex-start}}

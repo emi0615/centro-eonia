@@ -1,8 +1,49 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Centro Eonia</title><link rel="stylesheet" href="style.css"></head><body><header><b>CENTRO EONIA</b><span>Centro de aplicaciones</span></header><main>
-<section id="home" class="screen"><h1>Centro de aplicaciones</h1><div class="grid"><button onclick="go('football')">⚽<small>Fútbol</small></button><button>📖<small>Pokédex</small></button><button>🎮<small>Juegos</small></button><button>📝<small>Notas</small></button><button>🧮<small>Herramientas</small></button><button>⚙️<small>Configuración</small></button></div></section>
-<section id="football" class="screen hidden"><button class="back" onclick="go('home')">← Volver</button><h1>⚽ Fútbol</h1><div class="grid three"><button onclick="go('players')">👤<small>Jugadores</small></button><button onclick="go('teams')">🛡️<small>Equipos</small></button><button onclick="go('coaches')">👔<small>Entrenadores</small></button></div></section>
-<section id="players" class="screen hidden"><button class="back" onclick="go('football')">← Fútbol</button><h1>👤 Jugadores</h1><div class="tools"><input id="pq" placeholder="🔍 Buscar jugador" oninput="players()"><select id="pp" onchange="players()"><option value="">Todas las posiciones</option><option>POR</option><option>DEF</option><option>MED</option><option>ATA</option></select><button onclick="newPlayer()">➕ Crear</button></div><div id="pl"></div></section>
-<section id="teams" class="screen hidden"><button class="back" onclick="go('football')">← Fútbol</button><h1>🛡️ Equipos</h1><div class="tools"><input id="tq" placeholder="🔍 Buscar equipo" oninput="teams()"><button onclick="newTeam()">➕ Crear</button></div><div id="tl"></div></section>
-<section id="coaches" class="screen hidden"><button class="back" onclick="go('football')">← Fútbol</button><h1>👔 Entrenadores</h1><div class="tools"><input id="cq" placeholder="🔍 Buscar entrenador" oninput="coaches()"><button onclick="newCoach()">➕ Crear</button></div><div id="cl"></div></section>
-</main><script src="app.js"></script></body></html>
-<!-- Centro Eonia -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro Eonia</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><button class="logo-btn" onclick="showScreen('home')">✦ CENTRO EONIA</button></header>
+<main>
+<section id="home" class="screen active">
+<div class="hero"><h1>Centro de aplicaciones</h1><p>Tu espacio para organizar y disfrutar todos tus proyectos.</p></div>
+<div class="app-grid">
+<button class="app-card" onclick="showScreen('football')"><span class="icon">⚽</span><span>Fútbol</span><small>Jugadores · Equipos · DTs</small></button>
+<button class="app-card" onclick="showScreen('pokedex')"><span class="icon">📖</span><span>Pokédex</span><small>Pokémon de Eonia</small></button>
+<button class="app-card" onclick="showScreen('games')"><span class="icon">🎮</span><span>Juegos</span><small>Tus juegos y proyectos</small></button>
+<button class="app-card" onclick="showScreen('notes')"><span class="icon">📝</span><span>Notas</span><small>Ideas y apuntes</small></button>
+<button class="app-card" onclick="showScreen('tools')"><span class="icon">🧮</span><span>Herramientas</span><small>Calculadoras y utilidades</small></button>
+<button class="app-card" onclick="showScreen('settings')"><span class="icon">⚙️</span><span>Configuración</span><small>Ajustes de Centro Eonia</small></button>
+</div>
+</section>
+
+<section id="football" class="screen">
+<div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>⚽ Fútbol</h2><p>Gestioná tus jugadores, equipos y entrenadores.</p></div></div>
+<div class="sub-grid">
+<button class="sub-card" onclick="showFootball('players')">👤 <b>Jugadores</b><small>Fichas y medias</small></button>
+<button class="sub-card" onclick="showFootball('teams')">🛡️ <b>Equipos</b><small>Planteles y presupuestos</small></button>
+<button class="sub-card" onclick="showFootball('coaches')">👔 <b>Entrenadores</b><small>DTs y estadísticas</small></button>
+</div>
+<div id="football-content" class="content-box"><h3>Elegí una sección</h3><p>Podés entrar a Jugadores, Equipos o Entrenadores.</p></div>
+</section>
+
+<section id="pokedex" class="screen">
+<div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>📖 Pokédex</h2><p>La Pokédex de la región Eonia.</p></div></div>
+<div class="placeholder"><div class="big-icon">📖</div><h3>Pokédex de Eonia</h3><p>Este apartado ya está preparado para ir agregando los Pokémon de Eonia.</p><button class="primary" onclick="showPokedex()">Abrir Pokédex</button></div>
+</section>
+
+<section id="games" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>🎮 Juegos</h2><p>Tus juegos y proyectos.</p></div></div><div class="placeholder"><div class="big-icon">🎮</div><h3>Juegos</h3><p>Acá vamos a ir agregando tus juegos y proyectos.</p></div></section>
+
+<section id="notes" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>📝 Notas</h2><p>Guardá ideas y apuntes.</p></div></div><div class="placeholder"><div class="big-icon">📝</div><h3>Notas</h3><p>Este apartado queda listo para desarrollar el sistema de notas.</p></div></section>
+
+<section id="tools" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>🧮 Herramientas</h2><p>Calculadoras y utilidades.</p></div></div><div class="placeholder"><div class="big-icon">🧮</div><h3>Herramientas</h3><p>Acá podremos agregar calculadoras y otras herramientas.</p></div></section>
+
+<section id="settings" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>⚙️ Configuración</h2><p>Ajustes de Centro Eonia.</p></div></div><div class="placeholder"><div class="big-icon">⚙️</div><h3>Configuración</h3><p>Este apartado queda preparado para los ajustes de la aplicación.</p></div></section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
