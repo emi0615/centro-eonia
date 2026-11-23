@@ -1,49 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centro Eonia</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Centro Eonia</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar"><button class="logo-btn" onclick="showScreen('home')">✦ CENTRO EONIA</button></header>
-<main>
-<section id="home" class="screen active">
-<div class="hero"><h1>Centro de aplicaciones</h1><p>Tu espacio para organizar y disfrutar todos tus proyectos.</p></div>
-<div class="app-grid">
-<button class="app-card" onclick="showScreen('football')"><span class="icon">⚽</span><span>Fútbol</span><small>Jugadores · Equipos · DTs</small></button>
-<button class="app-card" onclick="showScreen('pokedex')"><span class="icon">📖</span><span>Pokédex</span><small>Pokémon de Eonia</small></button>
-<button class="app-card" onclick="showScreen('games')"><span class="icon">🎮</span><span>Juegos</span><small>Tus juegos y proyectos</small></button>
-<button class="app-card" onclick="showScreen('notes')"><span class="icon">📝</span><span>Notas</span><small>Ideas y apuntes</small></button>
-<button class="app-card" onclick="showScreen('tools')"><span class="icon">🧮</span><span>Herramientas</span><small>Calculadoras y utilidades</small></button>
-<button class="app-card" onclick="showScreen('settings')"><span class="icon">⚙️</span><span>Configuración</span><small>Ajustes de Centro Eonia</small></button>
-</div>
-</section>
+  <div class="stars"></div>
+  <header class="topbar">
+    <button class="brand" onclick="showPage('home')">★ CENTRO EONIA</button>
+  </header>
 
-<section id="football" class="screen">
-<div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>⚽ Fútbol</h2><p>Gestioná tus jugadores, equipos y entrenadores.</p></div></div>
-<div class="sub-grid">
-<button class="sub-card" onclick="showFootball('players')">👤 <b>Jugadores</b><small>Fichas y medias</small></button>
-<button class="sub-card" onclick="showFootball('teams')">🛡️ <b>Equipos</b><small>Planteles y presupuestos</small></button>
-<button class="sub-card" onclick="showFootball('coaches')">👔 <b>Entrenadores</b><small>DTs y estadísticas</small></button>
-</div>
-<div id="football-content" class="content-box"><h3>Elegí una sección</h3><p>Podés entrar a Jugadores, Equipos o Entrenadores.</p></div>
-</section>
+  <main id="app">
+    <section id="home" class="page active">
+      <div class="hero">
+        <p class="eyebrow">CENTRO DE APLICACIONES</p>
+        <h1>Centro Eonia</h1>
+        <p>Tu espacio para juegos, Pokémon, fútbol y herramientas.</p>
+      </div>
+      <div class="app-grid">
+        <button class="app-card" onclick="showPage('pokedex')"><span>📖</span><b>Pokédex</b><small>Pokémon de Eonia</small></button>
+        <button class="app-card" onclick="showPage('football')"><span>⚽</span><b>Fútbol</b><small>Jugadores, equipos y DTs</small></button>
+        <button class="app-card" onclick="showPage('games')"><span>🎮</span><b>Juegos</b><small>Proyectos y partidas</small></button>
+        <button class="app-card" onclick="showPage('notes')"><span>📝</span><b>Notas</b><small>Ideas y apuntes</small></button>
+        <button class="app-card" onclick="showPage('tools')"><span>🧮</span><b>Herramientas</b><small>Utilidades</small></button>
+        <button class="app-card" onclick="showPage('settings')"><span>⚙️</span><b>Configuración</b><small>Ajustes del centro</small></button>
+      </div>
+    </section>
 
-<section id="pokedex" class="screen">
-<div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>📖 Pokédex</h2><p>La Pokédex de la región Eonia.</p></div></div>
-<div class="placeholder"><div class="big-icon">📖</div><h3>Pokédex de Eonia</h3><p>Este apartado ya está preparado para ir agregando los Pokémon de Eonia.</p><button class="primary" onclick="showPokedex()">Abrir Pokédex</button></div>
-</section>
+    <section id="football" class="page">
+      <div class="section-head">
+        <div><p class="eyebrow">⚽ MÓDULO</p><h2>Fútbol</h2><p>Gestioná tus jugadores, equipos y entrenadores. Los cambios de equipo y DT se actualizan automáticamente.</p></div>
+        <button class="back" onclick="showPage('home')">← Inicio</button>
+      </div>
+      <div class="subnav">
+        <button onclick="footballTab('players')">👤 Jugadores</button>
+        <button onclick="footballTab('teams')">🛡️ Equipos</button>
+        <button onclick="footballTab('coaches')">👔 Entrenadores</button>
+      </div>
 
-<section id="games" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>🎮 Juegos</h2><p>Tus juegos y proyectos.</p></div></div><div class="placeholder"><div class="big-icon">🎮</div><h3>Juegos</h3><p>Acá vamos a ir agregando tus juegos y proyectos.</p></div></section>
+      <div id="playersTab" class="football-tab active">
+        <div class="toolbar">
+          <input id="playerSearch" oninput="renderPlayers()" placeholder="Buscar jugador...">
+          <select id="playerPosition" onchange="renderPlayers()">
+            <option value="">Todas las posiciones</option>
+            <option>POR</option><option>DEF</option><option>MED</option><option>DEL</option>
+          </select>
+          <select id="playerTeamFilter" onchange="renderPlayers()"><option value="">Todos los equipos</option></select>
+          <button class="primary" onclick="openPlayerForm()">+ Crear jugador</button>
+        </div>
+        <div id="playersList" class="cards"></div>
+      </div>
 
-<section id="notes" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>📝 Notas</h2><p>Guardá ideas y apuntes.</p></div></div><div class="placeholder"><div class="big-icon">📝</div><h3>Notas</h3><p>Este apartado queda listo para desarrollar el sistema de notas.</p></div></section>
+      <div id="teamsTab" class="football-tab">
+        <div class="toolbar">
+          <input id="teamSearch" oninput="renderTeams()" placeholder="Buscar equipo...">
+          <select id="teamCoachFilter" onchange="renderTeams()"><option value="">Todos los DT</option></select>
+          <button class="primary" onclick="openTeamForm()">+ Crear equipo</button>
+        </div>
+        <div id="teamsList" class="cards"></div>
+      </div>
 
-<section id="tools" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>🧮 Herramientas</h2><p>Calculadoras y utilidades.</p></div></div><div class="placeholder"><div class="big-icon">🧮</div><h3>Herramientas</h3><p>Acá podremos agregar calculadoras y otras herramientas.</p></div></section>
+      <div id="coachesTab" class="football-tab">
+        <div class="toolbar">
+          <input id="coachSearch" oninput="renderCoaches()" placeholder="Buscar entrenador...">
+          <select id="coachTeamFilter" onchange="renderCoaches()"><option value="">Todos los equipos</option></select>
+          <button class="primary" onclick="openCoachForm()">+ Crear entrenador</button>
+        </div>
+        <div id="coachesList" class="cards"></div>
+      </div>
+    </section>
 
-<section id="settings" class="screen"><div class="section-head"><button class="back" onclick="showScreen('home')">← Volver</button><div><h2>⚙️ Configuración</h2><p>Ajustes de Centro Eonia.</p></div></div><div class="placeholder"><div class="big-icon">⚙️</div><h3>Configuración</h3><p>Este apartado queda preparado para los ajustes de la aplicación.</p></div></section>
-</main>
-<script src="app.js"></script>
+    <section id="pokedex" class="page placeholder">
+      <div class="section-head"><div><p class="eyebrow">📖 MÓDULO</p><h2>Pokédex</h2><p>Pokédex de la región Eonia.</p></div><button class="back" onclick="showPage('home')">← Inicio</button></div>
+      <div class="empty-panel"><div>📖</div><h3>Pokédex de Eonia</h3><p>La sección ya está habilitada. Acá vamos a ir cargando los Pokémon de Eonia.</p></div>
+    </section>
+
+    <section id="games" class="page placeholder">
+      <div class="section-head"><div><p class="eyebrow">🎮 MÓDULO</p><h2>Juegos</h2><p>Acceso a tus proyectos y partidas.</p></div><button class="back" onclick="showPage('home')">← Inicio</button></div>
+      <div class="empty-panel"><div>🎮</div><h3>Juegos</h3><p>Sección preparada para agregar tus juegos de Centro Eonia.</p></div>
+    </section>
+
+    <section id="notes" class="page placeholder">
+      <div class="section-head"><div><p class="eyebrow">📝 MÓDULO</p><h2>Notas</h2><p>Ideas, apuntes y contenido de tus proyectos.</p></div><button class="back" onclick="showPage('home')">← Inicio</button></div>
+      <div class="empty-panel"><div>📝</div><h3>Notas</h3><p>Sección preparada para guardar notas.</p></div>
+    </section>
+
+    <section id="tools" class="page placeholder">
+      <div class="section-head"><div><p class="eyebrow">🧮 MÓDULO</p><h2>Herramientas</h2><p>Utilidades para tus proyectos.</p></div><button class="back" onclick="showPage('home')">← Inicio</button></div>
+      <div class="empty-panel"><div>🧮</div><h3>Herramientas</h3><p>Sección preparada para agregar calculadoras y utilidades.</p></div>
+    </section>
+
+    <section id="settings" class="page placeholder">
+      <div class="section-head"><div><p class="eyebrow">⚙️ MÓDULO</p><h2>Configuración</h2><p>Ajustes de Centro Eonia.</p></div><button class="back" onclick="showPage('home')">← Inicio</button></div>
+      <div class="empty-panel"><div>⚙️</div><h3>Configuración</h3><p>Acá podremos agregar ajustes, datos y preferencias.</p></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <button class="close" onclick="closeModal()">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
